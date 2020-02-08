@@ -1,6 +1,6 @@
 valor_casa = float(input("Digite o valor da casa: "))
 valor_salario = float(input("Digite o salario: "))
-qtde_meses = int(input("Em quantos anos quer quitar a casa: "))
+qtde_meses = int(input("Em quantos meses quer quitar a casa: "))
 
 sal_reduzido = (valor_salario*0.3)
 valor_prestacao = valor_casa/qtde_meses
