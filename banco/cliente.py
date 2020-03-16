@@ -5,13 +5,11 @@ class Cliente:
         self.agencia = agencia
         self.numero = numero
 
-
     def resumo(self):
-
         print(f"Nome: {self.nome}"
               f"\nTelefone: {self.telefone}"
               f"\nAgencia: {self.agencia}"
               f"\nNumero da conta: {self.numero}")
 
-        
+
 
