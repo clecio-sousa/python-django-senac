@@ -16,6 +16,6 @@ while (True):
 
     else:
         if (opcao == 1 ):
-            paci.
+            pass
 
 
