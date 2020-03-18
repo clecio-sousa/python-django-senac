@@ -1,7 +1,10 @@
-from sintomas import Paciente
 from hospital import Hospital
+# noinspection PyUnresolvedReferences
+from sintomas import Paciente
 
-paci = Hospital()
+paciente_1 = Hospital()
+paciente_sintomas = Paciente()
+
 opcao = 0
 while (True):
 
@@ -15,7 +18,9 @@ while (True):
         break
 
     else:
-        if (opcao == 1 ):
-            pass
+        if (opcao == 1):
+            paciente_1.cadastrar_pacientes()
+            paciente_sintomas.listar_sintomas_gripe()
+
 
 
