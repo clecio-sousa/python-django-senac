@@ -1,26 +1,40 @@
 from hospital import Hospital
-# noinspection PyUnresolvedReferences
-from sintomas import Paciente
 
-paciente_1 = Hospital()
-paciente_sintomas = Paciente()
+paciente = Hospital()
 
-opcao = 0
 while (True):
 
-    print("\n||||| BEM VINDO AO HOSPITAL PYTHON |||||"
+    print("\n\t|| CENTRO DE DIAGNOSTICO PARA COVID - 19 ||"
           "\n\n\t\t1 - CADASTRAR PACIENTE"
-          "\n\t\t2 - SAIR")
+          "\n\t\t2 - LISTAR PACIENTES INFECTADOS"
+          "\n\t\t3 - LISTAR PACIENTES GERAL"
+          "\n\t\t4 - SAIR")
 
-    opcao = int(input("DIGITE UMA OPCAO :"))
 
-    if opcao == 2:
+    opcao = int(input("\n\t\tDIGITE UMA OPCAO :"))
+
+    if (opcao == 4):
         break
-
     else:
-        if (opcao == 1):
-            paciente_1.cadastrar_pacientes()
-            paciente_sintomas.listar_sintomas_gripe()
+        if(opcao == 1):
+            while(True):
+                print("\n\t\tCADASTRO DO PACIENTE")
+                print("\t ","_" * 25)
+                paciente.cadastrar_pacientes()
+                paciente.diagnostico()
+                paciente.resultado()
+                print("\n N - NOVO PACIENTE"
+                             "\t\tS - SAIR")
+                sair = input("OPÇÃO:")
+                if sair == 's':
+                    break
+                elif sair == 'n':
+                    continue
 
+        elif(opcao == 2):
+            paciente.listar_pacientes_infectados()
+
+        elif(opcao == 3):
+            paciente.listar_pacientes_geral()
 
 
