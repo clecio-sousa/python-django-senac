@@ -1,4 +1,3 @@
-
 class Hospital:
     def __init__(self):
 
@@ -75,11 +74,11 @@ class Hospital:
         if self.resultado_diagnostico >= 4 and self.temp_febre >= 39 and self.dificuldade_respirar == 1:
             self.resultado_diagnostico = "Positivo"
             self.lista_pacientes_infectados.append("%-15s %-15d %s" % (self.nome, self.idade, self.resultado_diagnostico))
-            print("POSITIVO PARA COVID-19")
+            print(red, f"PACIENTE É SUSPEITO PARA COVID - 19", reset)
 
         else:
             self.resultado_diagnostico = "Negativo"
-            print("NEGATIVO PARA COVID-19")
+            print(green, "PACIENTE NÃO É SUSPEITO PARA COVID - 19", reset)
 
         self.lista_pacientes.append("%-15s %-15d %s" % (self.nome, self.idade, self.resultado_diagnostico))
 
@@ -92,8 +91,8 @@ class Hospital:
         print("LISTA DE PACIENTES GERAL")
         print("%-15s %-15s %s" % (self.nome_tabela_geral, self.idade_tabela_geral, self.resultado_diagnostico_tabela_geral))
 
-        for i in self.lista_pacientes:
-            print(i)
+        for index, paciente in enumerate(self.lista_pacientes):
+            print(index + 1, paciente)
 
     def listar_pacientes_infectados(self):
         self.nome_tabela_infectado = "NOME"
@@ -103,7 +102,13 @@ class Hospital:
         print("\nLISTA DE PACIENTES INFECTADOS")
         print("%-15s %-15s %s" % (self.nome_tabela_infectado, self.idade_tabela_infectado, self.resultado_diagnostico_tabela_infectado))
 
-        for i in self.lista_pacientes_infectados:
-            print(i)
+        for index, paciente in enumerate(self.lista_pacientes_infectados):
+            print(index + 1, paciente)
+
+#tabela c/cores
+red = "\033[1;31m"
+blue = "\033[1;34m"
+green = "\033[0;32m"
+reset = "\033[0;0m"
 
 

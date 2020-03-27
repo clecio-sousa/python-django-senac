@@ -2,6 +2,8 @@ from hospital import Hospital
 
 paciente = Hospital()
 
+
+
 while (True):
 
     print("\n\t|| CENTRO DE DIAGNOSTICO PARA COVID - 19 ||"
