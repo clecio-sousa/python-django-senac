@@ -3,13 +3,13 @@ class Hospital:
 
         self.nome= ''
         self.idade = 0
+        self.sexo = ''
         self.nome_tabela_geral = ""
         self.idade_tabela_geral = ""
         self.resultado_diagnostico_tabela_geral = ""
-        self.idade_risco = ''
-        self.sexo = ''
-        self.lista_pacientes = []
-        self.resposta = ''
+        self.nome_tabela_infectado = ''
+        self.idade_tabela_infectado = ''
+        self.resultado_diagnostico_tabela_infectado = ''
         self.febre_alta = ''
         self.temp_febre = ''
         self.tosse_seca = ''
@@ -17,18 +17,26 @@ class Hospital:
         self.dificuldade_respirar = ''
         self.coriza = ''
         self.lista_resultado = []
+        self.lista_pacientes_geral = []
         self.lista_pacientes_infectados = []
 
 
-    # Cadastro de pacientes com sintomas
+    # Cadastro de pacientes
     def cadastrar_pacientes(self):
 
         self.nome = input("\nNOME DO PACIENTE: ")
-        self.idade = int(input("IDADE DO PACIENTE: "))
-        if(self.idade >= 60):
-            self.idade_risco = "Paciente faz parte do grupo de risco"
-        self.sexo = input("SEXO DO PACIENTE: ")
+        self.sexo = input("SEXO DO PACIENTE (M ou F): ")
 
+        while(True):
+
+            try:
+                self.idade = int(input("IDADE DO PACIENTE: "))
+
+            except (ValueError, TypeError):
+                print(red, "Tente um numero valido", reset)
+                continue
+            else:
+                return self.idade
 
     # Diagnostico do paciente
     def diagnostico(self):
@@ -38,14 +46,14 @@ class Hospital:
         print("\n0 - NÃO"
               "\t\t1 - SIM")
 
-        self.resultado_diagnostico =0
+        self.resultado_diagnostico = 0
 
         self.febre_alta = int(input("\n1.Febre alta: "))
         if(self.febre_alta == 1):
             self.temp_febre = int(input("1.1 Qual a temperatura da febre: "))
             if(self.temp_febre >=39):
                 self.febre_alta = "Febre igual ou acima de 39º"
-            self.resultado_diagnostico += 1
+                self.resultado_diagnostico += 1
         self.lista_resultado.append(f"febre alta : {self.febre_alta}")
 
         self.tosse_seca = int(input("2.Tosse seca: "))
@@ -68,10 +76,10 @@ class Hospital:
             self.resultado_diagnostico += 1
         self.lista_resultado.append(f"Coriza/congestão nasal: {self.coriza}")
 
-
+    #resultado do diagnostico
     def resultado(self):
 
-        if self.resultado_diagnostico >= 4 and self.temp_febre >= 39 and self.dificuldade_respirar == 1:
+        if (self.resultado_diagnostico >=3) and (self.dificuldade_respirar == 1):
             self.resultado_diagnostico = "Positivo"
             self.lista_pacientes_infectados.append("%-15s %-15d %s" % (self.nome, self.idade, self.resultado_diagnostico))
             print(red, f"PACIENTE É SUSPEITO PARA COVID - 19", reset)
@@ -80,7 +88,7 @@ class Hospital:
             self.resultado_diagnostico = "Negativo"
             print(green, "PACIENTE NÃO É SUSPEITO PARA COVID - 19", reset)
 
-        self.lista_pacientes.append("%-15s %-15d %s" % (self.nome, self.idade, self.resultado_diagnostico))
+        self.lista_pacientes_geral.append("%-15s %-15d %s" % (self.nome, self.idade, self.resultado_diagnostico))
 
     # Listagem geral de pacientes
     def listar_pacientes_geral(self):
@@ -91,9 +99,10 @@ class Hospital:
         print("LISTA DE PACIENTES GERAL")
         print("%-15s %-15s %s" % (self.nome_tabela_geral, self.idade_tabela_geral, self.resultado_diagnostico_tabela_geral))
 
-        for index, paciente in enumerate(self.lista_pacientes):
+        for index, paciente in enumerate(self.lista_pacientes_geral):
             print(index + 1, paciente)
 
+    # Listagem pacientes infectados
     def listar_pacientes_infectados(self):
         self.nome_tabela_infectado = "NOME"
         self.idade_tabela_infectado = "IDADE"
@@ -105,10 +114,11 @@ class Hospital:
         for index, paciente in enumerate(self.lista_pacientes_infectados):
             print(index + 1, paciente)
 
+
 #tabela c/cores
 red = "\033[1;31m"
-blue = "\033[1;34m"
 green = "\033[0;32m"
 reset = "\033[0;0m"
+
 
 
