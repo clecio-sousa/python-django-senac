@@ -1,8 +1,8 @@
 class Banco:
-    def __init__(self, nome, clientes = [], contas = []):
+    def __init__(self, nome):
         self.nome = nome
-        self.clientes = clientes
-        self.contas = contas
+        self.clientes = []
+        self.contas = []
 
     def abrir_conta(self):
         pass
